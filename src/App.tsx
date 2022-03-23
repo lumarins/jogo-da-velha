@@ -4,22 +4,32 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <html>
+      <head>
+          <link rel="stylesheet" href="./App.css" />
+      </head>
+
+      <body>
+          <div className="ticTacToe">
+              <div className="column">
+                  <span className="square" data-col="0" data-row="0"></span>
+                  <span className="square" data-col="0" data-row="1"></span>
+                  <span className="square" data-col="0" data-row="2"></span>
+              </div>
+              <div className="column">
+                  <span className="square" data-col="1" data-row="0"></span>
+                  <span className="square" data-col="1" data-row="1"></span>
+                  <span className="square" data-col="1" data-row="2"></span>
+              </div>
+              <div className="column">
+                  <span className="square" data-col="2" data-row="0"></span>
+                  <span className="square" data-col="2" data-row="1"></span>
+                  <span className="square" data-col="2" data-row="2"></span>
+              </div>
+          </div>
+          <script src="./game.js"></script>
+      </body>
+    </html>
   );
 }
 
