@@ -1,20 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import Board from './components/Board';
 import Game from './components/Game';
-import Title from './components/Title';
+import Header from './components/Header';
+import ResetGameButton from './components/ResetGameButton';
 
 type Players = "X" | "O";
 
 function App() {
 
+  //De qual jogador é a vez
   const [turn, setTurn] = useState<Players>("X");
+
+  //Qual jogador Venceu
   const [winner, setWinner] = useState<Players | null>(null);
+
+  //Empate
   const [draw, setDraw] = useState<boolean | null>(null);
 
+  //Quadrado Clicado (Marcado)
   const [marks, setMarks] = useState<{ [key: string]: Players }> ({});
 
+  //Fim de Jogo
   const gameOver = !!winner || !!draw;
 
+  //Preenchendo os quadrados
   const getSquares = () => {
     return new Array(9).fill(true);
   }
@@ -24,10 +34,14 @@ function App() {
       return;
     }
 
+    //Recebe o valor anterior do vetor, adiciona a última marca
     setMarks(prev => ({...prev, [index]: turn}));
+    //Recebe o último jogador a clicar e passa a vez para o próximo
     setTurn(prev => prev === "X" ? "O" : "X")
   }
 
+
+  //Verifica o jogador que clicou
   const getSquarePlayer = (index: number) => {
     if(!marks[index]) {
       return;
@@ -35,6 +49,7 @@ function App() {
     return marks[index];
   }
 
+  //Possíveis combinações de vitória
   const getWinner = () => {
     const thisLines = [
       [0, 1, 2],
@@ -49,6 +64,7 @@ function App() {
       [2, 4, 6]
     ];
 
+    //Verifica se as marcações do jogador fazem parte do conjunto de combinações de vitória
     for (const line of thisLines) {
       const [a, b, c] = line;
 
@@ -58,6 +74,7 @@ function App() {
     }
   };
 
+  //Reseta o jogo
   const reset = () => {
     setMarks({});
     setWinner(null);
@@ -77,24 +94,15 @@ function App() {
 
   return (
     <Game>
-
-      <Title />
-      { winner &&<h2 className='victory'>Vitória do Jogador <span className='player'>{winner}</span></h2> }
-      { draw && <h2 className='draw'>Vixi, Deu Velha</h2> }
-      {!gameOver && <p>Vez do Jogador <span className='player'>{turn}</span></p> }
-
-        <div className={`board ${gameOver ? "gameOver" : null}`}>
-
+      <Header winner={winner} draw={draw} gameOver={gameOver} turn={turn}/>
+      <Board gameOver={gameOver}>
           {getSquares().map((_, i) => (
             <div className={`square ${getSquarePlayer(i)}`} onClick={() => play(i)}>
               {marks[i]}
             </div>
           ))}
-
-        </div>
-
-      { gameOver && <button className='playAgain' onClick={reset}>Jogar Novamente</button> }
-      
+      </Board>
+      <ResetGameButton gameOver={gameOver} reset={reset} />
     </Game>
   );
 }

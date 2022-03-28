@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;600&display=swap');
+
 .container {
   width: 100%;
   height: 100vh;
 
-  background-color: #cecece;
+  background: rgb(202,171,251);
+  background: linear-gradient(144deg, rgba(202,171,251,1) 0%, rgba(98,222,159,1) 100%);
 
   display: flex;
   flex-direction: column;
@@ -11,7 +14,7 @@
   
 
   color: #333;
-  font-family:Arial, Helvetica, sans-serif
+  font-family: 'Quicksand', sans-serif;
 }
 
 .board {
@@ -20,10 +23,10 @@
   justify-content: center;
   align-items: center;
 
-  width: 320px;
+  width: 400px;
   margin: 10px;
   color: #fff;
-  font-size: 30px;
+  font-size: 45px;
   font-weight: bold;
 }
 
@@ -32,9 +35,9 @@
 }
 
 .square {
-  width: 100px;
-  height: 100px;
-  margin: 2px;
+  width: 120px;
+  height: 120px;
+  margin: 5px;
   border-radius: 5px;
 
   background-color: #ffffff;
@@ -46,39 +49,41 @@
 }
 
 .square.O {
-  background-color: #1f6e90;
+  background-color: #6ee1a7;
 }
 
 .square.X {
-  background-color: #db7b32;
+  background-color: #baa1e2;
 }
 
 .victory {
-  font-size: 40px;
+  font-size: 50px;
   color: #2f775b;
 }
 
 .draw {
-  font-size: 37px;
-  color: #ca6767;
+  font-size: 50px;
+  color: #c81c1c;
+  text-align: center;
 }
 
 p, h1 {
-  font-size: 45px;
+  font-size: 65px;
+  text-align: center;
 }
 
 .player {
-  font-size: 40px;
+  font-size: 60px;
   font-weight: bold;
-  color:#2f775b;
+  color:#8a05c3;
   text-decoration: underline;
 }
 
 .playAgain {
-  padding: 10px;
-  margin: 20px;
-  font-size: 20px;
-  background: #62a984;
+  padding: 15px;
+  margin: 25px;
+  font-size: 30px;
+  background: #7762a9;
   border: 2px solid #fff;
   border-radius: 5px;
   color: #fff;
